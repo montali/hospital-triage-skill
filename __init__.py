@@ -10,7 +10,7 @@ class HospitalTriage(MycroftSkill):
         reply = self.get_response(dialog='Quali sono i sintomi?', data=None, validator=None,
                                   on_fail=None, num_retries=-1)
         # self.speak_dialog('triage.hospital')
-        self.speak_dialog(reply)
+        self.converse(reply)
 
     @intent_file_handler('fall.intent')
     def handle_fall(self, message):
