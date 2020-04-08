@@ -12,6 +12,14 @@ class HospitalTriage(MycroftSkill):
         # self.speak_dialog('triage.hospital')
         self.speak_dialog(reply)
 
+    @intent_file_handler('fall.intent')
+    def handle_fall(self, message):
+        self.speak_dialog('Nemmeno a me piacciono le scale!')
+
+    @intent_file_handler('headache.intent')
+    def handle_fall(self, message):
+        self.speak_dialog('Lo studio ti frega')
+
 
 def create_skill():
     return HospitalTriage()
