@@ -13,13 +13,11 @@ class HospitalTriage(MycroftSkill):
             self.handle_fall()
         elif self.voc_match(reply, 'headache'):
             self.handle_headache()
-        # self.speak_dialog('triage.hospital')
-        # self.converse(reply)
 
-    def handle_fall():
+    def handle_fall(self):
         self.speak('Nemmeno a me piacciono le scale!')
 
-    def handle_headache():
+    def handle_headache(self):
         self.speak('Lo studio ti frega')
 
 
