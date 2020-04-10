@@ -3,8 +3,6 @@ from mycroft import MycroftSkill, intent_file_handler
 
 # TODO:
 # 1. define some decorators:
-#       covid symptom -> takes you to covid questions
-#       symptom -> asks you about pain and other symptoms
 #       When using them, put the general symptom before of the covid one, so that covid questions get asked first.
 # 2. create personal informations request method. add spelling too.
 
@@ -19,6 +17,7 @@ class HospitalTriage(MycroftSkill):
             returned = handler(*args, **kwargs)
             args[0].med_record["symptom_declaration"] = args[1].data["utterance"]
             # I'm using args[0] here instead of self, but it works the same
+            args[0].request_age()
             args[0].request_other_symptoms()
             args[0].evaluate_pain()
             return returned
@@ -80,21 +79,57 @@ class HospitalTriage(MycroftSkill):
         self.med_record["code"] = "red"
         self.speak_dialog('symptoms.breath')
 
+    # FRACTURE
     @intent_file_handler('symptoms.fracture.intent')
     @symptom_handler
     def handle_fracture(self, message):
         self.med_record["main_symptom"] = "fracture"
-        self.log.info(message.data)
         self.med_record["limb"] = message.data.get('limb')
         did_i_get_that = self.ask_yesno(
             'symptoms.fracture', {"article": message.data.get('article'), "limb": message.data.get('limb')})
         self.med_record["code"] = "yellow"
         if did_i_get_that == 'no':
             self.speak_dialog('main_symptom', expect_response=True)
+
+    # FEVER
+    @intent_file_handler('symptoms.fever.intent')
+    @symptom_handler
+    @covid_symptom
+    def handle_fever(self, message):
+        self.med_record["main_symptom"] = "fever"
+        self.med_record["code"] = "yellow"
+        self.speak_dialog('symptoms.fever')
+        self.check_fever()
+
+    # BURN
+    @intent_file_handler('symptoms.burn.intent')
+    @symptom_handler
+    def handle_burn(self, message):
+        self.med_record["main_symptom"] = "burn"
+        self.med_record["code"] = "yellow"
+        self.speak_dialog('symptoms.burn')
+
     # ------------------------------------
     # HELPERS
     #   These are being used in the decorators.
     # ------------------------------------
+
+    def request_age(self):
+        self.med_record["age"] = int(self.get_response(dialog='request_age',
+                                                       data=None, validator=age_validator, on_fail=None, num_retries=-1))
+
+    def check_fever(self):
+        # Let's first check if the patient knows his temperature
+        has_checked_fever = self.ask_yesno('has_checked_fever')
+        self.log.info(has_checked_fever)
+        # If he/she has a fever, it may be a COVID infect
+        if has_checked_fever == "yes":
+            temperature_string = self.get_response(dialog='get_temperature',
+                                                   data=None, validator=fever_validator, on_fail=None, num_retries=-1)
+            self.med_record["fever"] = extract_temperature(temperature_string)
+            return True
+        else:
+            return False
 
     def request_other_symptoms(self):
         other_symptoms = self.get_response(dialog='other_symptoms',
@@ -116,17 +151,11 @@ class HospitalTriage(MycroftSkill):
     def ask_covid_questions(self):
         self.speak_dialog('gotta_check_covid')
         covid_score = 1
-        # Let's first check if the patient knows his temperature
-        has_checked_fever = self.ask_yesno('has_checked_fever')
-        self.log.info(has_checked_fever)
-        # If he/she has a fever, it may be a COVID infect
-        if has_checked_fever == "yes":
-            temperature_string = self.get_response(dialog='get_temperature',
-                                                   data=None, validator=None, on_fail=None, num_retries=-1)
-            self.med_record["fever"] = extract_temperature(temperature_string)
-            if self.med_record["fever"] > 37.5:
-                covid_score = 10
-
+        # Let's check if the patient knows the temperature. Skip if he already declared it.
+        if not "fever" in self.med_record:
+            self.check_fever()
+        if self.med_record["fever"] > 37.5:
+            covid_score = covid_score * 2
         # Let's define an array of tuples, each containing the yes/no question string and its COVID index multiplier
         yesno_questions = [("has_sore_throat", 1.3), ("has_cold", 1.3), ("has_breathing_difficulties",
                                                                          1.6), ("has_cough", 1.6), ("has_had_contacts", 2), ("misses_taste", 1.7)]
@@ -139,7 +168,7 @@ class HospitalTriage(MycroftSkill):
             self.log.info(covid_score)
 
         self.med_record["covid_score"] = covid_score
-        if covid_score > 40:
+        if covid_score > 15:
             self.speak_dialog('probably_has_covid')
         else:
             self.speak_dialog('doesnt_have_covid')
@@ -158,23 +187,34 @@ def number_validator(utterance):
 
 
 def fever_validator(utterance):
-    if len(utterance) != 3:
+    try:
+        temperature = extract_temperature(utterance)
+        # I guess you're pretty dead if your temperature is 32 or 45, but you never know
+        return 32 <= temperature <= 45
+    except TypeError:
         return False
-    temperature = extract_temperature(utterance)
-    # I guess you're pretty dead if your temperature is 32 or 45, but you never know
-    return 32 <= temperature <= 45
+
+
+def age_validator(utterance):
+    try:
+        return 0 <= int(utterance) <= 120
+    except TypeError:
+        return False
 
 
 def extract_temperature(utterance):
     # Beware: the ' e ' has to be before the simple space!
     possible_separators = ['/', '.', ',', ' e ', ' ']
-    for separator in possible_separators:
-        if separator in utterance:
-            temperature_strings = utterance.split(separator)
-            temperature = int(
-                temperature_strings[0])+float(temperature_strings[1])*0.1
-            return temperature
-    return None
+    try:
+        for separator in possible_separators:
+            if separator in utterance:
+                temperature_strings = utterance.split(separator)
+                temperature = int(
+                    temperature_strings[0])+float(temperature_strings[1])*0.1
+                return temperature
+        return None
+    except TypeError:
+        return None
 
 
 def create_skill():
