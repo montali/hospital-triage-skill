@@ -1,4 +1,5 @@
 from mycroft import MycroftSkill, intent_file_handler
+import json
 
 
 # TODO:
@@ -20,6 +21,8 @@ class HospitalTriage(MycroftSkill):
             args[0].request_age()
             args[0].request_other_symptoms()
             args[0].evaluate_pain()
+            args[0].request_name()
+            args[0].export_med_record()
             return returned
         return ask_about_symptoms
 
@@ -126,6 +129,24 @@ class HospitalTriage(MycroftSkill):
         self.med_record["age"] = int(self.get_response(dialog='get_age',
                                                        data=None, validator=age_validator, on_fail=None, num_retries=-1))
 
+    def request_name(self):
+        full_name = self.get_response(dialog='get_fullname',
+                                      data=None, validator=None, on_fail=None, num_retries=-1)
+        if self.ask_yesno('check_fullname', {"full_name": full_name}) == "no":
+            # Spelling request
+            spelled_surname = self.get_response(dialog='get_surname_spelling',
+                                                data=None, validator=None, on_fail=None, num_retries=-1)
+            spelled_name = self.get_response(dialog='get_name_spelling',
+                                             data=None, validator=None, on_fail=None, num_retries=-1)
+            full_name = spelled_name + " " + spelled_surname
+            if self.ask_yesno('check_fullname', {"full_name": full_name}) == "no":
+                self.request_name()
+            else:
+                self.med_record["full_name"] = full_name
+        else:
+            self.med_record["full_name"] = full_name
+        # this is working pretty bad rn, I think it would be better to just let the nurse get the name while checking the ID
+
     def check_fever(self):
         # Let's first check if the patient knows his temperature
         has_checked_fever = self.ask_yesno('has_checked_fever')
@@ -162,8 +183,9 @@ class HospitalTriage(MycroftSkill):
         # Let's check if the patient knows the temperature. Skip if he already declared it.
         if not "fever" in self.med_record:
             self.check_fever()
-        if self.med_record["fever"] > 37.5:
-            covid_score = covid_score * 2
+        if "fever" in self.med_record:
+            if self.med_record["fever"] > 37.5:
+                covid_score = covid_score * 2
         # Let's define an array of tuples, each containing the yes/no question string and its COVID index multiplier
         yesno_questions = [("has_sore_throat", 1.3), ("has_cold", 1.3), ("has_breathing_difficulties",
                                                                          1.6), ("has_cough", 1.6), ("has_had_contacts", 2), ("misses_taste", 1.7)]
@@ -182,8 +204,15 @@ class HospitalTriage(MycroftSkill):
             self.speak_dialog('doesnt_have_covid')
         self.log.info(self.med_record)
 
+    def export_med_record(self):
+        with open("med_record.json", "w") as med_record_file:
+            med_record_file.write(json.dumps(self.med_record))
+        self.speak_dialog('thanks_and_bye', {"desk": self.med_record["code"]})
+        self.med_record = {}
 
 # number_validator: checks if the utterance is a number.
+
+
 def number_validator(utterance):
     # This check is needed because of the overlapping between 6 and the "essere" verb
     if utterance == 'sei':
