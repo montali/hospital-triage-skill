@@ -109,13 +109,21 @@ class HospitalTriage(MycroftSkill):
         self.med_record["code"] = "yellow"
         self.speak_dialog('symptoms.burn')
 
+    # ABDOMINAL PAIN
+    @intent_file_handler('symptoms.ab_pain.intent')
+    @symptom_handler
+    def handle_abpain(self, message):
+        self.med_record["main_symptom"] = "ab_pain"
+        self.med_record["code"] = "yellow"
+        self.speak_dialog('symptoms.ab_pain')
+
     # ------------------------------------
     # HELPERS
     #   These are being used in the decorators.
     # ------------------------------------
 
     def request_age(self):
-        self.med_record["age"] = int(self.get_response(dialog='request_age',
+        self.med_record["age"] = int(self.get_response(dialog='get_age',
                                                        data=None, validator=age_validator, on_fail=None, num_retries=-1))
 
     def check_fever(self):
