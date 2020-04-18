@@ -1,19 +1,45 @@
+"""Mycroft skill that does a pre-triage on hospital patients.
+
+The skill tries to ask the patient its symptoms, its personal data, 
+and more. Then, it assigns a color code, stating a priority for
+medical interventions.
+"""
+
 from mycroft import MycroftSkill, intent_file_handler
 import json
 
 
-# TODO:
-# 1. define some decorators:
-#       When using them, put the general symptom before of the covid one, so that covid questions get asked first.
-# 2. create personal informations request method. add spelling too.
+""" TODO:
+ 1. define some decorators:
+       When using them, put the general symptom before of the covid one, so that covid questions get asked first.
+ 2. create personal informations request method. add spelling too.
+"""
 
 
 class HospitalTriage(MycroftSkill):
+    """Main skill class for the triage.
+
+    This is the main skill class (extending MycroftSkill),
+    which contains all the operations we need to perform the
+    triage.
+
+    Attributes:
+        med_record: a dict containing all the patient data.
+    """
+
     def __init__(self):
         MycroftSkill.__init__(self)
         self.med_record = {}
 
     def symptom_handler(handler):
+        """Decorates a symptom with the needed operations.
+
+        This function is used as a decorator for symptoms, adding
+        operations like personal data asking, age, other symptoms...
+
+        Returns:
+            The decorator function
+        """
         def ask_about_symptoms(*args, **kwargs):
             returned = handler(*args, **kwargs)
             args[0].med_record["symptom_declaration"] = args[1].data["utterance"]
@@ -27,6 +53,15 @@ class HospitalTriage(MycroftSkill):
         return ask_about_symptoms
 
     def covid_symptom(handler):
+        """Decorates a COVID-compatible symptom.
+
+        This function is used as a decorator in the COVID-compatible
+        symptoms. It proceeds to ask the COVID-related questions
+        to the patient.
+
+        Returns:
+            The decorator function
+        """
         def check_if_covid(*args, **kwargs):
             returned = handler(*args, **kwargs)
             args[0].ask_covid_questions()
@@ -38,6 +73,14 @@ class HospitalTriage(MycroftSkill):
     # ------------------------------------
     @intent_file_handler('triage.hospital.intent')
     def handle_triage_hospital(self, message):
+        """This function handles the conversation start intent.
+
+        It first checks if the patient is responsive (green code), then 
+        proceeds to ask the symptoms.
+
+        Args:
+            message: the message object returned from Mycroft
+        """
         # STEP 1A: check if the patient walked in. If so, it is likely that he's not urgent.
         self.med_record["can_talk"] = self.ask_yesno('can_talk')
 
@@ -54,6 +97,14 @@ class HospitalTriage(MycroftSkill):
     @symptom_handler
     @covid_symptom
     def handle_faint(self, message):
+        """This function handles a "faint" symptom.
+
+        Faint is recognized as a red code, and is a 
+        COVID-compatible symptom.
+
+        Args:
+            message: the message object returned from Mycroft
+        """
         self.med_record["main_symptom"] = "faints"
         self.med_record["code"] = 'red'
         self.speak_dialog('symptoms.faint')
@@ -61,6 +112,13 @@ class HospitalTriage(MycroftSkill):
     @intent_file_handler('symptoms.bleeding.intent')
     @symptom_handler
     def handle_bleeding(self, message):
+        """This function handles a "hemorrhage" symptom.
+
+        Hemorrhage is recognized as a red code.
+
+        Args:
+            message: the message object returned from Mycroft
+        """
         self.med_record["main_symptom"] = "bleeding"
         self.med_record["code"] = 'red'
         self.speak_dialog('symptoms.bleeding')
@@ -69,6 +127,13 @@ class HospitalTriage(MycroftSkill):
     @intent_file_handler('symptoms.shock.intent')
     @symptom_handler
     def handle_shock(self, message):
+        """This function handles a "shock" symptom.
+
+        Shock is recognized as a red code.
+
+        Args:
+            message: the message object returned from Mycroft
+        """
         self.med_record["main_symptom"] = "shock"
         self.med_record["code"] = "red"
         self.speak_dialog('symptoms.shock')
@@ -78,6 +143,14 @@ class HospitalTriage(MycroftSkill):
     @symptom_handler
     @covid_symptom
     def handle_breathing(self, message):
+        """This function handles a "breathing fatigue" symptom.
+
+        Breathing fatigue is recognized as a red code, and is a
+        COVID-compatible symptom.
+
+        Args:
+            message: the message object returned from Mycroft
+        """
         self.med_record["main_symptom"] = "breathing"
         self.med_record["code"] = "red"
         self.speak_dialog('symptoms.breath')
@@ -86,6 +159,14 @@ class HospitalTriage(MycroftSkill):
     @intent_file_handler('symptoms.fracture.intent')
     @symptom_handler
     def handle_fracture(self, message):
+        """This function handles a "fracture" symptom.
+
+        Since fracture intents contain an entity stating the limb,
+        it checks if it got that right. Then, it assigns a yellow code.
+
+        Args:
+            message: the message object returned from Mycroft
+        """
         self.med_record["main_symptom"] = "fracture"
         self.med_record["limb"] = message.data.get('limb')
         did_i_get_that = self.ask_yesno(
@@ -99,6 +180,14 @@ class HospitalTriage(MycroftSkill):
     @symptom_handler
     @covid_symptom
     def handle_fever(self, message):
+        """This function handles a "fever" symptom.
+
+        Fever is recognized as a yellow code, but it is a
+        COVID-compatible symptom so it requires further investigation.
+
+        Args:
+            message: the message object returned from Mycroft
+        """
         self.med_record["main_symptom"] = "fever"
         self.med_record["code"] = "yellow"
         self.speak_dialog('symptoms.fever')
@@ -108,6 +197,13 @@ class HospitalTriage(MycroftSkill):
     @intent_file_handler('symptoms.burn.intent')
     @symptom_handler
     def handle_burn(self, message):
+        """This function handles a "burn" symptom.
+
+        Burn is recognized as a yellow code.
+
+        Args:
+            message: the message object returned from Mycroft
+        """
         self.med_record["main_symptom"] = "burn"
         self.med_record["code"] = "yellow"
         self.speak_dialog('symptoms.burn')
@@ -116,6 +212,14 @@ class HospitalTriage(MycroftSkill):
     @intent_file_handler('symptoms.ab_pain.intent')
     @symptom_handler
     def handle_abpain(self, message):
+        """This function handles an "abdominal pain" symptom.
+
+        Abdmonial pain can be related with heart issues,
+        but for now the code is yellow.
+
+        Args:
+            message: the message object returned from Mycroft
+        """
         self.med_record["main_symptom"] = "ab_pain"
         self.med_record["code"] = "yellow"
         self.speak_dialog('symptoms.ab_pain')
@@ -126,10 +230,20 @@ class HospitalTriage(MycroftSkill):
     # ------------------------------------
 
     def request_age(self):
+        """Gets the patient age.
+
+        This function requests the patient's age and
+        saved it in the medical record.
+        """
         self.med_record["age"] = int(self.get_response(dialog='get_age',
                                                        data=None, validator=age_validator, on_fail=None, num_retries=-1))
 
     def request_name(self):
+        """Gets the patient name.
+
+        It first asks for the full name, and if not correct, 
+        it proceeds to ask the spelling.
+        """
         full_name = self.get_response(dialog='get_fullname',
                                       data=None, validator=None, on_fail=None, num_retries=-1)
         if self.ask_yesno('check_fullname', {"full_name": full_name}) == "no":
@@ -148,6 +262,14 @@ class HospitalTriage(MycroftSkill):
         # this is working pretty bad rn, I think it would be better to just let the nurse get the name while checking the ID
 
     def check_fever(self):
+        """Gets the patient fever.
+
+        This function asks the patient if he measured 
+        his temperature, and if so, it asks it.
+
+        Returns:
+            True if we got the temperature, False if not.
+        """
         # Let's first check if the patient knows his temperature
         has_checked_fever = self.ask_yesno('has_checked_fever')
         self.log.info(has_checked_fever)
@@ -161,6 +283,10 @@ class HospitalTriage(MycroftSkill):
             return False
 
     def request_other_symptoms(self):
+        """Gets the patient's other symptoms.
+
+        Asks the patient if he got other symptoms to warn us about.
+        """
         other_symptoms = self.get_response(dialog='other_symptoms',
                                            data=None, validator=None, on_fail=None, num_retries=-1)
         if not self.voc_match(other_symptoms, 'no'):
@@ -170,6 +296,11 @@ class HospitalTriage(MycroftSkill):
         self.log.info(self.med_record)
 
     def evaluate_pain(self):
+        """Gets the patient's pain evaluation.
+
+        Asks the patient his/her pain from 1 to 10.
+        This is used by many hospitals to evaluate the conditions.
+        """
         reply = self.get_response(dialog='pain_evaluation',
                                   data=None, validator=number_validator, on_fail=None, num_retries=3)
         # This check is needed because of the overlapping between 6 and the "essere" verb
@@ -178,6 +309,12 @@ class HospitalTriage(MycroftSkill):
         self.med_record["pain_index"] = reply
 
     def ask_covid_questions(self):
+        """Checks for COVID symptoms.
+
+        When triggered by a COVID-compatible symptom, 
+        this function evaluates the patient symptoms to 
+        try to guess if he/she has COVID19.
+        """
         self.speak_dialog('gotta_check_covid')
         covid_score = 1
         # Let's check if the patient knows the temperature. Skip if he already declared it.
@@ -205,15 +342,26 @@ class HospitalTriage(MycroftSkill):
         self.log.info(self.med_record)
 
     def export_med_record(self):
+        """Exports the data to JSON.
+
+        This function is called at the end of the interaction
+        to export the fetched data from the patient. It then
+        assigns a desk to the patient based on his/her severeness.
+        """
         with open("med_record.json", "w") as med_record_file:
             med_record_file.write(json.dumps(self.med_record))
         self.speak_dialog('thanks_and_bye', {"desk": self.med_record["code"]})
         self.med_record = {}
 
-# number_validator: checks if the utterance is a number.
-
 
 def number_validator(utterance):
+    """Checks if the utterance is a number.
+
+    This validator is used when asking for pain from 1 to 10.
+
+    Returns:
+        True if the utterance contains a valid number, False if not.
+    """
     # This check is needed because of the overlapping between 6 and the "essere" verb
     if utterance == 'sei':
         utterance = 6
@@ -224,6 +372,13 @@ def number_validator(utterance):
 
 
 def fever_validator(utterance):
+    """Checks if the utterance is a fever-compatible value.
+
+    This validator is used when asking for the patient temperature.
+
+    Returns:
+        True if plausible, False if not.
+    """
     try:
         temperature = extract_temperature(utterance)
         # I guess you're pretty dead if your temperature is 32 or 45, but you never know
@@ -233,13 +388,36 @@ def fever_validator(utterance):
 
 
 def age_validator(utterance):
+    """Checks if the utterance is an age.
+
+    This validator is used when we're getting the patient age.
+
+    Returns:
+        True if plausible, False if not.
+    """
     try:
         return 0 <= int(utterance) <= 120
     except TypeError:
         return False
 
+# extract_temperature: extracts the float fever value, transforming it from the various ways of mycroft interpreting it
+
 
 def extract_temperature(utterance):
+    """Extracts the patient temperature from the utterance.
+
+    This is needed because of the various ways of Mycroft interpreting
+    floating point numbers. Some examples:
+    - 38 e 1
+    - 38/1
+    - 38.1
+    - 38,1
+    - 38 1
+
+    Returns:
+        The floating point value of the temperature, or
+        None if it is impossible to extract.
+    """
     # Beware: the ' e ' has to be before the simple space!
     possible_separators = ['/', '.', ',', ' e ', ' ']
     try:
@@ -255,4 +433,7 @@ def extract_temperature(utterance):
 
 
 def create_skill():
+    """Creates the skill for the Mycroft bot using the 
+    skill class.
+    """
     return HospitalTriage()
