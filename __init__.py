@@ -247,19 +247,15 @@ class HospitalTriage(MycroftSkill):
         full_name = self.get_response(dialog='get_fullname',
                                       data=None, validator=None, on_fail=None, num_retries=-1)
         if self.ask_yesno('check_fullname', {"full_name": full_name}) == "no":
-            # Spelling request
-            spelled_surname = self.get_response(dialog='get_surname_spelling',
-                                                data=None, validator=None, on_fail=None, num_retries=-1)
-            spelled_name = self.get_response(dialog='get_name_spelling',
-                                             data=None, validator=None, on_fail=None, num_retries=-1)
-            full_name = spelled_name + " " + spelled_surname
+            self.speak_dialog('lets_retry')
+            full_name = self.get_response(dialog='get_fullname',
+                                          data=None, validator=None, on_fail=None, num_retries=-1)
             if self.ask_yesno('check_fullname', {"full_name": full_name}) == "no":
                 self.request_name()
             else:
                 self.med_record["full_name"] = full_name
         else:
             self.med_record["full_name"] = full_name
-        # this is working pretty bad rn, I think it would be better to just let the nurse get the name while checking the ID
 
     def check_fever(self):
         """Gets the patient fever.
