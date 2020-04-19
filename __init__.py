@@ -424,6 +424,8 @@ def extract_temperature(utterance):
         for separator in possible_separators:
             if separator in utterance:
                 temperature_strings = utterance.split(separator)
+                if temperature_strings[1] == "mezzo":
+                    temperature_strings[1] = "5"
                 temperature = int(
                     temperature_strings[0])+float(temperature_strings[1])*0.1
                 return temperature
