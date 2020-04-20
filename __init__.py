@@ -10,9 +10,8 @@ import json
 
 
 """ TODO:
- 1. define some decorators:
-       When using them, put the general symptom before of the covid one, so that covid questions get asked first.
- 2. create personal informations request method. add spelling too.
+ 1. Create GUI. I'll add some GUI comments to describe the desired behaviour.
+ 2. Translate strings to english
 """
 
 
@@ -80,12 +79,15 @@ class HospitalTriage(MycroftSkill):
 
         Args:
             message: the message object returned from Mycroft
+
+        GUI: "Is it you?" --> "Main symptom?"
         """
         # STEP 1A: check if the patient walked in. If so, it is likely that he's not urgent.
         self.med_record["can_talk"] = self.ask_yesno('can_talk')
 
         # STEP 1B: Ask for the main symptom and check if we recognize it.
         self.speak_dialog('main_symptom', expect_response=True)
+        # Gotta get that from the vocabulary
         self.gui.show_text("Sintomi principali?")
 
     # ------------------------------------
@@ -105,6 +107,8 @@ class HospitalTriage(MycroftSkill):
 
         Args:
             message: the message object returned from Mycroft
+
+        GUI: show faint emoji
         """
         self.med_record["main_symptom"] = "faints"
         self.med_record["code"] = 'red'
@@ -119,6 +123,8 @@ class HospitalTriage(MycroftSkill):
 
         Args:
             message: the message object returned from Mycroft
+
+        GUI: show blood emoji
         """
         self.med_record["main_symptom"] = "bleeding"
         self.med_record["code"] = 'red'
@@ -134,6 +140,8 @@ class HospitalTriage(MycroftSkill):
 
         Args:
             message: the message object returned from Mycroft
+
+        GUI: show shocked emoji
         """
         self.med_record["main_symptom"] = "shock"
         self.med_record["code"] = "red"
@@ -151,6 +159,8 @@ class HospitalTriage(MycroftSkill):
 
         Args:
             message: the message object returned from Mycroft
+
+        GUI: show open mouth emoji
         """
         self.med_record["main_symptom"] = "breathing"
         self.med_record["code"] = "red"
@@ -167,6 +177,8 @@ class HospitalTriage(MycroftSkill):
 
         Args:
             message: the message object returned from Mycroft
+
+        GUI: show fracture emoji
         """
         self.med_record["main_symptom"] = "fracture"
         self.med_record["limb"] = message.data.get('limb')
@@ -188,6 +200,8 @@ class HospitalTriage(MycroftSkill):
 
         Args:
             message: the message object returned from Mycroft
+
+        GUI: show fever emoji
         """
         self.med_record["main_symptom"] = "fever"
         self.med_record["code"] = "yellow"
@@ -204,6 +218,8 @@ class HospitalTriage(MycroftSkill):
 
         Args:
             message: the message object returned from Mycroft
+
+        GUI: show burn emoji
         """
         self.med_record["main_symptom"] = "burn"
         self.med_record["code"] = "yellow"
@@ -220,6 +236,8 @@ class HospitalTriage(MycroftSkill):
 
         Args:
             message: the message object returned from Mycroft
+
+        GUI: show abdominal pain emoji
         """
         self.med_record["main_symptom"] = "ab_pain"
         self.med_record["code"] = "yellow"
@@ -235,6 +253,8 @@ class HospitalTriage(MycroftSkill):
 
         This function requests the patient's age and
         saved it in the medical record.
+
+        GUI: show textual question
         """
         self.med_record["age"] = int(self.get_response(dialog='get_age',
                                                        data=None, validator=age_validator, on_fail=None, num_retries=-1))
@@ -244,6 +264,8 @@ class HospitalTriage(MycroftSkill):
 
         It first asks for the full name, and if not correct, 
         it proceeds to ask the spelling.
+
+        GUI: show textual question
         """
         full_name = self.get_response(dialog='get_fullname',
                                       data=None, validator=None, on_fail=None, num_retries=-1)
@@ -266,6 +288,8 @@ class HospitalTriage(MycroftSkill):
 
         Returns:
             True if we got the temperature, False if not.
+
+        GUI: show thermometer + textual question?
         """
         # Let's first check if the patient knows his temperature
         has_checked_fever = self.ask_yesno('has_checked_fever')
@@ -283,6 +307,8 @@ class HospitalTriage(MycroftSkill):
         """Gets the patient's other symptoms.
 
         Asks the patient if he got other symptoms to warn us about.
+
+        GUI: textual question
         """
         other_symptoms = self.get_response(dialog='other_symptoms',
                                            data=None, validator=None, on_fail=None, num_retries=-1)
@@ -297,6 +323,8 @@ class HospitalTriage(MycroftSkill):
 
         Asks the patient his/her pain from 1 to 10.
         This is used by many hospitals to evaluate the conditions.
+
+        GUI: show indicator emoji
         """
         reply = self.get_response(dialog='pain_evaluation',
                                   data=None, validator=number_validator, on_fail=None, num_retries=3)
@@ -311,6 +339,8 @@ class HospitalTriage(MycroftSkill):
         When triggered by a COVID-compatible symptom, 
         this function evaluates the patient symptoms to 
         try to guess if he/she has COVID19.
+
+        GUI: show face mask emoji
         """
         self.speak_dialog('gotta_check_covid')
         covid_score = 1
@@ -344,6 +374,8 @@ class HospitalTriage(MycroftSkill):
         This function is called at the end of the interaction
         to export the fetched data from the patient. It then
         assigns a desk to the patient based on his/her severeness.
+
+        GUI: show hands emoji
         """
         with open("med_record.json", "w") as med_record_file:
             med_record_file.write(json.dumps(self.med_record))
