@@ -86,7 +86,7 @@ class HospitalTriage(MycroftSkill):
         self.med_record["can_talk"] = self.ask_yesno('can_talk')
 
         # STEP 1B: Ask for the main symptom and check if we recognize it.
-        self.speak_dialog('main_symptom', expect_response=True)
+        print(self.speak_dialog('main_symptom', expect_response=True))
         # Gotta get that from the vocabulary
         self.gui.show_text("Sintomi principali?")
 
@@ -110,6 +110,7 @@ class HospitalTriage(MycroftSkill):
 
         GUI: show faint emoji
         """
+        self.gui.show_text("😴")
         self.med_record["main_symptom"] = "faints"
         self.med_record["code"] = 'red'
         self.speak_dialog('symptoms.faint')
@@ -126,6 +127,7 @@ class HospitalTriage(MycroftSkill):
 
         GUI: show blood emoji
         """
+        self.gui.show_text("🩸")
         self.med_record["main_symptom"] = "bleeding"
         self.med_record["code"] = 'red'
         self.speak_dialog('symptoms.bleeding')
@@ -143,6 +145,7 @@ class HospitalTriage(MycroftSkill):
 
         GUI: show shocked emoji
         """
+        self.gui.show_text("😖")
         self.med_record["main_symptom"] = "shock"
         self.med_record["code"] = "red"
         self.speak_dialog('symptoms.shock')
@@ -162,6 +165,7 @@ class HospitalTriage(MycroftSkill):
 
         GUI: show open mouth emoji
         """
+        self.gui.show_text("😮")
         self.med_record["main_symptom"] = "breathing"
         self.med_record["code"] = "red"
         self.speak_dialog('symptoms.breath')
@@ -180,6 +184,7 @@ class HospitalTriage(MycroftSkill):
 
         GUI: show fracture emoji
         """
+        self.gui.show_text("🤦‍♂️")
         self.med_record["main_symptom"] = "fracture"
         self.med_record["limb"] = message.data.get('limb')
         did_i_get_that = self.ask_yesno(
@@ -203,6 +208,7 @@ class HospitalTriage(MycroftSkill):
 
         GUI: show fever emoji
         """
+        self.gui.show_text("🤒")
         self.med_record["main_symptom"] = "fever"
         self.med_record["code"] = "yellow"
         self.speak_dialog('symptoms.fever')
@@ -221,6 +227,7 @@ class HospitalTriage(MycroftSkill):
 
         GUI: show burn emoji
         """
+        self.gui.show_text("🔥")
         self.med_record["main_symptom"] = "burn"
         self.med_record["code"] = "yellow"
         self.speak_dialog('symptoms.burn')
@@ -239,6 +246,7 @@ class HospitalTriage(MycroftSkill):
 
         GUI: show abdominal pain emoji
         """
+        self.gui.show_text("🥴")
         self.med_record["main_symptom"] = "ab_pain"
         self.med_record["code"] = "yellow"
         self.speak_dialog('symptoms.ab_pain')
@@ -256,6 +264,7 @@ class HospitalTriage(MycroftSkill):
 
         GUI: show textual question
         """
+        self.gui.show_text("📅")
         self.med_record["age"] = int(self.get_response(dialog='get_age',
                                                        data=None, validator=age_validator, on_fail=None, num_retries=-1))
 
@@ -269,6 +278,7 @@ class HospitalTriage(MycroftSkill):
         """
         full_name = self.get_response(dialog='get_fullname',
                                       data=None, validator=None, on_fail=None, num_retries=-1)
+        self.gui.show_text("Nome?")
         if self.ask_yesno('check_fullname', {"full_name": full_name}) == "no":
             self.speak_dialog('lets_retry')
             full_name = self.get_response(dialog='get_fullname',
@@ -298,6 +308,7 @@ class HospitalTriage(MycroftSkill):
         if has_checked_fever == "yes":
             temperature_string = self.get_response(dialog='get_temperature',
                                                    data=None, validator=fever_validator, on_fail=None, num_retries=-1)
+            self.gui.show_text("🌡Temperatura?")
             self.med_record["fever"] = extract_temperature(temperature_string)
             return True
         else:
@@ -312,6 +323,7 @@ class HospitalTriage(MycroftSkill):
         """
         other_symptoms = self.get_response(dialog='other_symptoms',
                                            data=None, validator=None, on_fail=None, num_retries=-1)
+        self.gui.show_text("Altri sintomi?")
         if not self.voc_match(other_symptoms, 'no'):
             self.med_record["other_symptoms"] = other_symptoms
         else:
@@ -324,10 +336,11 @@ class HospitalTriage(MycroftSkill):
         Asks the patient his/her pain from 1 to 10.
         This is used by many hospitals to evaluate the conditions.
 
-        GUI: show indicator emoji
+        GUI: show fire extinguisher emoji
         """
         reply = self.get_response(dialog='pain_evaluation',
                                   data=None, validator=number_validator, on_fail=None, num_retries=3)
+        self.gui.show_text("🧯")
         # This check is needed because of the overlapping between 6 and the "essere" verb
         if reply == 'sei':
             reply = 6
@@ -343,6 +356,7 @@ class HospitalTriage(MycroftSkill):
         GUI: show face mask emoji
         """
         self.speak_dialog('gotta_check_covid')
+        self.gui.show_text("😷")
         covid_score = 1
         # Let's check if the patient knows the temperature. Skip if he already declared it.
         if not "fever" in self.med_record:
