@@ -88,7 +88,7 @@ class HospitalTriage(MycroftSkill):
         # STEP 1B: Ask for the main symptom and check if we recognize it.
         print(self.speak_dialog('main_symptom', expect_response=True))
         # Gotta get that from the vocabulary
-        self.gui.show_text("Sintomi principali?")
+        self.gui.show_text("Sintomo principale?")
 
     # ------------------------------------
     # MAIN SYMPTOMS HANDLERS
