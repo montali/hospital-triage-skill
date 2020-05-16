@@ -276,9 +276,9 @@ class HospitalTriage(MycroftSkill):
 
         GUI: show textual question
         """
+        self.gui.show_text("Nome?")
         full_name = self.get_response(dialog='get_fullname',
                                       data=None, validator=None, on_fail=None, num_retries=-1)
-        self.gui.show_text("Nome?")
         if self.ask_yesno('check_fullname', {"full_name": full_name}) == "no":
             self.speak_dialog('lets_retry')
             full_name = self.get_response(dialog='get_fullname',
@@ -306,9 +306,9 @@ class HospitalTriage(MycroftSkill):
         self.log.info(has_checked_fever)
         # If he/she has a fever, it may be a COVID infect
         if has_checked_fever == "yes":
+            self.gui.show_text("🌡Temperatura?")
             temperature_string = self.get_response(dialog='get_temperature',
                                                    data=None, validator=fever_validator, on_fail=None, num_retries=-1)
-            self.gui.show_text("🌡Temperatura?")
             self.med_record["fever"] = extract_temperature(temperature_string)
             return True
         else:
@@ -321,9 +321,9 @@ class HospitalTriage(MycroftSkill):
 
         GUI: textual question
         """
+        self.gui.show_text("Altri sintomi?")
         other_symptoms = self.get_response(dialog='other_symptoms',
                                            data=None, validator=None, on_fail=None, num_retries=-1)
-        self.gui.show_text("Altri sintomi?")
         if not self.voc_match(other_symptoms, 'no'):
             self.med_record["other_symptoms"] = other_symptoms
         else:
@@ -338,9 +338,9 @@ class HospitalTriage(MycroftSkill):
 
         GUI: show fire extinguisher emoji
         """
+        self.gui.show_text("🧯")
         reply = self.get_response(dialog='pain_evaluation',
                                   data=None, validator=number_validator, on_fail=None, num_retries=3)
-        self.gui.show_text("🧯")
         # This check is needed because of the overlapping between 6 and the "essere" verb
         if reply == 'sei':
             reply = 6
@@ -355,8 +355,8 @@ class HospitalTriage(MycroftSkill):
 
         GUI: show face mask emoji
         """
-        self.speak_dialog('gotta_check_covid')
         self.gui.show_text("😷")
+        self.speak_dialog('gotta_check_covid')
         covid_score = 1
         # Let's check if the patient knows the temperature. Skip if he already declared it.
         if not "fever" in self.med_record:
