@@ -5,7 +5,7 @@ and more. Then, it assigns a color code, stating a priority for
 medical interventions.
 """
 
-from mycroft import MycroftSkill, FallbackSkill, intent_file_handler
+from mycroft import MycroftSkill, intent_file_handler
 import json
 from fastai.text import *
 
@@ -16,7 +16,7 @@ from fastai.text import *
 """
 
 
-class HospitalTriage(MycroftSkill, FallbackSkill):
+class HospitalTriage(MycroftSkill):
     """Main skill class for the triage.
 
     This is the main skill class (extending MycroftSkill),
@@ -29,8 +29,6 @@ class HospitalTriage(MycroftSkill, FallbackSkill):
 
     def __init__(self):
         MycroftSkill.__init__(self)
-        # Registers the fallback handler
-        self.register_fallback(self.handle_fallback, 10)
         self.med_record = {}
         # Load the classifier model
         self.learner = load_learner('models', 'exported_model')
@@ -259,25 +257,6 @@ class HospitalTriage(MycroftSkill, FallbackSkill):
         self.med_record["main_symptom"] = "ab_pain"
         self.med_record["code"] = "yellow"
         self.speak_dialog('symptoms.ab_pain')
-
-    # ------------------------------------
-    # FALLBACK SKILL
-    #   If the symptom wasn't recognized, let AI do its thang.
-    # ------------------------------------
-    @symptom_handler
-    def handle_fallback(self, message):
-        utterance = message.data.get("utterance")
-        symptom = self.classes[int(self.learner.predict(utterance)[0])]
-        self.gui.show_text(symptom["emoji"])
-        did_i_get_that = self.ask_yesno(
-            'symptoms.fallback', {"symptom": symptom["name"]})
-        if not did_i_get_that:
-            self.speak_dialog('sorry')
-        else:
-            if symptom["covid"]:
-                self.ask_covid_questions()
-            self.med_record["main_symptom"] = symptom["name"]
-            self.med_record["code"] = symptom["code"]
 
     # ------------------------------------
     # ------------------------------------
