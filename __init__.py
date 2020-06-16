@@ -7,6 +7,7 @@ medical interventions.
 
 from mycroft import MycroftSkill, intent_file_handler
 import json
+import os
 from fastai.text import *
 
 
@@ -14,7 +15,7 @@ from fastai.text import *
  1. Create GUI. I'll add some GUI comments to describe the desired behaviour.
  2. Translate strings to english
 """
-
+BASEPATH = '/opt/mycroft/skills/hospital-triage-skill.montali/'
 
 class HospitalTriage(MycroftSkill):
     """Main skill class for the triage.
@@ -31,10 +32,10 @@ class HospitalTriage(MycroftSkill):
         MycroftSkill.__init__(self)
         self.med_record = {}
         # Load the classifier model
-        self.learner = load_learner('models', 'exported_model')
+        self.learner = load_learner(BASEPATH+'models', 'exported_model')
 
         # Load the classifier classes from JSON
-        with open('classes.json') as classes:
+        with open(BASEPATH+'classes.json') as classes:
             self.classes = json.load(classes)
 
     def symptom_handler(handler):
