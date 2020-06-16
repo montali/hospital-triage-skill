@@ -6,6 +6,7 @@ medical interventions.
 """
 
 from mycroft import MycroftSkill, intent_file_handler
+from mycroft.filesystem import FileSystemAccess
 import json
 import os
 from fastai.text import *
@@ -37,6 +38,8 @@ class HospitalTriage(MycroftSkill):
         # Load the classifier classes from JSON
         with open(BASEPATH+'classes.json') as classes:
             self.classes = json.load(classes)
+        with file_system.open('informations.json') as informations:
+            self.informations = json.load(informations)
 
     def symptom_handler(handler):
         """Decorates a symptom with the needed operations.
@@ -98,6 +101,33 @@ class HospitalTriage(MycroftSkill):
         # Gotta get that from the vocabulary
         self.gui.show_text("Sintomo principale?")
 
+    # ------------------------------------
+    # INFOS REQUEST
+    # ------------------------------------
+    @intent_file_handler('info.request.intent')
+    def handle_info_request(self, message):
+        """This function handles users requesting medical infos.
+
+        It uses data downloaded from the internet, on the
+        Ministero della Salute website.
+
+        Args:
+            message: the message object returned from Mycroft
+
+        GUI: "Is it you?" --> "Main symptom?"
+        """
+        # Let's create an array containing the choices of infos
+        self.possibilities = self.informations[message.data.get('disease')]
+        choices = ""
+        for choice in self.possibilities:
+            choices = choices + choice + ", "
+        self.speak_dialog("infos.possibilities", )
+        response = self.get_response(dialog='infos.possibilities', data={
+            "possibilities": choices})
+        try:
+            self.speak_dialog('infos', {"infos": self.informations[response]})
+        except KeyError:
+            self.speak_dialog('sorry')
     # ------------------------------------
     # MAIN SYMPTOMS HANDLERS
     #   Ordered by priority.
