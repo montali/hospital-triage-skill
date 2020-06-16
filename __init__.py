@@ -7,6 +7,7 @@ medical interventions.
 
 from mycroft import MycroftSkill, intent_file_handler
 import json
+from fastai.text import *
 
 
 """ TODO:
@@ -15,7 +16,7 @@ import json
 """
 
 
-class HospitalTriage(MycroftSkill):
+class HospitalTriage(MycroftSkill, FallbackSkill):
     """Main skill class for the triage.
 
     This is the main skill class (extending MycroftSkill),
@@ -28,7 +29,15 @@ class HospitalTriage(MycroftSkill):
 
     def __init__(self):
         MycroftSkill.__init__(self)
+        # Registers the fallback handler
+        self.register_fallback(self.handle_fallback, 10)
         self.med_record = {}
+        # Load the classifier model
+        self.learner = load_learner('models', 'exported_model')
+
+        # Load the classifier classes from JSON
+        with open('classes.json') as classes:
+            self.classes = json.load(classes)
 
     def symptom_handler(handler):
         """Decorates a symptom with the needed operations.
@@ -251,6 +260,26 @@ class HospitalTriage(MycroftSkill):
         self.med_record["code"] = "yellow"
         self.speak_dialog('symptoms.ab_pain')
 
+    # ------------------------------------
+    # FALLBACK SKILL
+    #   If the symptom wasn't recognized, let AI do its thang.
+    # ------------------------------------
+    @symptom_handler
+    def handle_fallback(self, message):
+        utterance = message.data.get("utterance")
+        symptom = self.classes[int(self.learner.predict(utterance)[0])]
+        self.gui.show_text(symptom["emoji"])
+        did_i_get_that = self.ask_yesno(
+            'symptoms.fallback', {"symptom": symptom["name"]})
+        if not did_i_get_that:
+            self.speak_dialog('sorry')
+        else:
+            if symptom["covid"]:
+                self.ask_covid_questions()
+            self.med_record["main_symptom"] = symptom["name"]
+            self.med_record["code"] = symptom["code"]
+
+    # ------------------------------------
     # ------------------------------------
     # HELPERS
     #   These are being used in the decorators.

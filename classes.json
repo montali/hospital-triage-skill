@@ -1,0 +1,134 @@
+[
+  {
+    "name": "Caduta dei capelli",
+    "emoji": "🤠",
+    "code": "green",
+    "covid": false
+  },
+  {
+    "name": "Capogiri",
+    "emoji": "🥴",
+    "code": "yellow",
+    "covid": false
+  },
+  {
+    "name": "Difficoltà respiratorie",
+    "emoji": "😮",
+    "code": "red",
+    "covid": true
+  },
+  {
+    "name": "Dolore al collo",
+    "emoji": "🦒",
+    "code": "yellow",
+    "covid": false
+  },
+  {
+    "name": "Dolore al ginocchio",
+    "emoji": "🏃‍♂️",
+    "code": "yellow",
+    "covid": false
+  },
+  {
+    "name": "Dolore al piede",
+    "emoji": "🦶",
+    "code": "yellow",
+    "covid": false
+  },
+  {
+    "name": "Dolore alla spalla",
+    "emoji": "🏓",
+    "code": "yellow",
+    "covid": false
+  },
+  {
+    "name": "Dolore emotivo",
+    "emoji": "😢",
+    "code": "green",
+    "covid": false
+  },
+  {
+    "name": "Dolore interno",
+    "emoji": "❤️",
+    "code": "red",
+    "covid": false
+  },
+  {
+    "name": "Dolore muscolare",
+    "emoji": "🏋️‍♂️",
+    "code": "green",
+    "covid": false
+  },
+  {
+    "name": "Dolori cardiaci",
+    "emoji": "❤️",
+    "code": "red",
+    "covid": false
+  },
+  {
+    "name": "Dolori articolari",
+    "emoji": "🤕",
+    "code": "yellow",
+    "covid": false
+  },
+  {
+    "name": "Ferita aperta",
+    "emoji": "🩸",
+    "code": "yellow",
+    "covid": false
+  },
+  {
+    "name": "Ferita infetta",
+    "emoji": "🌡",
+    "code": "yellow",
+    "covid": false
+  },
+  {
+    "name": "Lesioni da sport",
+    "emoji": "⛹️‍♀️",
+    "code": "yellow",
+    "covid": false
+  },
+  {
+    "name": "Mal d'orecchi",
+    "emoji": "👂",
+    "code": "yellow",
+    "covid": false
+  },
+  {
+    "name": "Mal di schiena",
+    "emoji": "🤚",
+    "code": "yellow",
+    "covid": false
+  },
+  {
+    "name": "Mal di stomaco",
+    "emoji": "🥩",
+    "code": "yellow",
+    "covid": false
+  },
+  {
+    "name": "Mal di testa",
+    "emoji": "😇",
+    "code": "green",
+    "covid": false
+  },
+  {
+    "name": "Problemi dermatologici",
+    "emoji": "🧴",
+    "code": "yellow",
+    "covid": false
+  },
+  {
+    "name": "Raffreddore",
+    "emoji": "🥶",
+    "code": "yellow",
+    "covid": false
+  },
+  {
+    "name": "Sensazione di debolezza",
+    "emoji": "🤷🏻‍♂️",
+    "code": "yellow",
+    "covid": false
+  }
+]
