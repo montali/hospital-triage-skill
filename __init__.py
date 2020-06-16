@@ -5,7 +5,7 @@ and more. Then, it assigns a color code, stating a priority for
 medical interventions.
 """
 
-from mycroft import MycroftSkill, intent_file_handler
+from mycroft import MycroftSkill, FallbackSkill, intent_file_handler
 import json
 from fastai.text import *
 
