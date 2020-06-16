@@ -26,6 +26,3 @@
 #   # Require the installation of other skills before installing this skill
 #   skill:
 #     - my-other-skill
-dependencies:
-  python:
-    - fastai
