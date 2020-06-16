@@ -16,7 +16,7 @@ from fastai.text import *
 """
 
 
-class HospitalTriage(MycroftSkill):
+class HospitalTriage(MycroftSkill, FallbackSkill):
     """Main skill class for the triage.
 
     This is the main skill class (extending MycroftSkill),

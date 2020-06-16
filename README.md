@@ -14,14 +14,14 @@ The skill is activated by saying the wake word (which, by default is `hey mycrof
 
 Then, the interaction begins: the bot asks if it's talking directly with the patient. This helps us understands if he/she's conscious. Then, it asks about the main symptom. Right now, it recognises:
 
-* Faints
-* Hemorrhages
-* Shocks
-* Breathing difficulties
-* Fractures (extracting the affected limb)
-* Fevers
-* Burns
-* Abdominal pains
+- Faints
+- Hemorrhages
+- Shocks
+- Breathing difficulties
+- Fractures (extracting the affected limb)
+- Fevers
+- Burns
+- Abdominal pains
 
 If the declared symptom is compatible with the COVID19, the bot asks some questions to determine the `covid_score`, an index determining how likely the patient is affected by COVID19.
 
@@ -33,17 +33,25 @@ Remember to disable `personal` skill by adding `"mycroft-personal.mycroftai"` to
 
 To install this skill, you just have to clone this repo inside of `/opt/mycroft/skills`
 
+If you're having problems with dependencies installation, your pip temp dir may be too small:
+
+```
+export TMPDIR=/bigger/dir
+```
+
+should solve that.
+
 ## Defining new symptoms
 
 Each symptom is defined by:
 
-* Its intent file, containing the triggering phrases used to train the model. `locale/[LANG]/symptoms.[name].intent`
-* Its dialog file, containing the bot's responses. `locale/[LANG]/symptoms.[name].dialog`
-* A handler, decorated with `@intent_file_handler` and `@symptom_handler`
+- Its intent file, containing the triggering phrases used to train the model. `locale/[LANG]/symptoms.[name].intent`
+- Its dialog file, containing the bot's responses. `locale/[LANG]/symptoms.[name].dialog`
+- A handler, decorated with `@intent_file_handler` and `@symptom_handler`
 
 If it is a COVID19-compatible symptom, it is decorated with `@covid_symptom` too.
 
-For example, the *short breath* handler is this:
+For example, the _short breath_ handler is this:
 
 ```python
 # BREATH
@@ -55,8 +63,6 @@ def handle_breathing(self, message):
   self.med_record["code"] = "red"
   self.speak_dialog('symptoms.breath')
 ```
-
-
 
 ## Triggering phrases
 
