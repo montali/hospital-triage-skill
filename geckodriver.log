@@ -1,0 +1,153 @@
+1592382143805	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/yl/3bwgxtvd3d55k4h9wn4c996w0000gn/T/rust_mozprofileGZ63ys"
+1592382146767	Marionette	INFO	Listening on port 64001
+1592382146847	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592382258942	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/yl/3bwgxtvd3d55k4h9wn4c996w0000gn/T/rust_mozprofilen4PrCN"
+1592382261289	Marionette	INFO	Listening on port 64557
+1592382261305	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592382291577	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/yl/3bwgxtvd3d55k4h9wn4c996w0000gn/T/rust_mozprofile313AsE"
+1592382293858	Marionette	INFO	Listening on port 64759
+1592382293933	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592382321057	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/yl/3bwgxtvd3d55k4h9wn4c996w0000gn/T/rust_mozprofileS7TN70"
+1592382323589	Marionette	INFO	Listening on port 64949
+1592382323631	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592382356806	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/yl/3bwgxtvd3d55k4h9wn4c996w0000gn/T/rust_mozprofileZ9YhQr"
+1592382359255	Marionette	INFO	Listening on port 65166
+1592382359264	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592382449070	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/yl/3bwgxtvd3d55k4h9wn4c996w0000gn/T/rust_mozprofilefivvAN"
+1592382451441	Marionette	INFO	Listening on port 49245
+1592382451531	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592382565678	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/yl/3bwgxtvd3d55k4h9wn4c996w0000gn/T/rust_mozprofilekrNIxA"
+1592382568102	Marionette	INFO	Listening on port 49857
+1592382568134	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592382584867	Marionette	INFO	Stopped listening on port 64001
+1592382586435	Marionette	INFO	Stopped listening on port 64557
+1592382587904	Marionette	INFO	Stopped listening on port 64759
+1592382589409	Marionette	INFO	Stopped listening on port 64949
+1592382590935	Marionette	INFO	Stopped listening on port 65166
+1592382592815	Marionette	INFO	Stopped listening on port 49245
+1592382595337	Marionette	INFO	Stopped listening on port 49857
+1592382596838	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/yl/3bwgxtvd3d55k4h9wn4c996w0000gn/T/rust_mozprofileutOBbg"
+1592382598793	Marionette	INFO	Listening on port 50055
+1592382598885	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592382745426	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/yl/3bwgxtvd3d55k4h9wn4c996w0000gn/T/rust_mozprofileXfCSu3"
+1592382747874	Marionette	INFO	Listening on port 50891
+1592382747924	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592382864446	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/yl/3bwgxtvd3d55k4h9wn4c996w0000gn/T/rust_mozprofileOo1Cwu"
+1592382866827	Marionette	INFO	Listening on port 51482
+1592382866836	Marionette	WARN	TLS certificate errors will be ignored for this session
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+Exiting due to channel error.
+Exiting due to channel error.
+1592382892795	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/yl/3bwgxtvd3d55k4h9wn4c996w0000gn/T/rust_mozprofilezGxVZ3"
+1592382895160	Marionette	INFO	Listening on port 51663
+1592382895182	Marionette	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1592382917720	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/yl/3bwgxtvd3d55k4h9wn4c996w0000gn/T/rust_mozprofiles3zWGj"
+1592382920264	Marionette	INFO	Listening on port 51836
+1592382920305	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: , line 0: AbortError: The fetching process for the media resource was aborted by the user agent at the user's request.
+JavaScript error: , line 0: AbortError: The fetching process for the media resource was aborted by the user agent at the user's request.
+JavaScript error: , line 0: AbortError: The fetching process for the media resource was aborted by the user agent at the user's request.
+JavaScript error: , line 0: AbortError: The fetching process for the media resource was aborted by the user agent at the user's request.
+JavaScript error: resource:///modules/FaviconLoader.jsm, line 568: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript error: resource:///modules/FaviconLoader.jsm, line 568: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript error: resource:///modules/FaviconLoader.jsm, line 568: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript error: , line 0: AbortError: The fetching process for the media resource was aborted by the user agent at the user's request.
+JavaScript warning: https://www.google.com/xjs/_/js/k=xjs.s.it.kKHd7iTxwsw.O/ck=xjs.s.B98JoGvKF3A.L.F4.O/am=AkAAAADAEsCsGwDOfxAA4IISBwAAgAAtQbCxQAqRkBCAAAAwCwsAAAQ/d=1/exm=Fkg7bd,HcFEGb,IvlUe,MC8mtf,OF7gzc,RMhBfe,T4BAC,TJw5qb,Y33vzc,ZyRBae,cdos,cr,csi,d,hsm,iDPoPb,jsa,mvYTse,tg8oTe,uz938c,vWNDde,ws9Tlc,yQ43ff/ed=1/dg=2/ct=zgms/rs=ACT90oHwnIhbEqf-CzraZDfyY9nHqw8Axw/m=G3eKy,MB3mMb,MkHyGd,NBZ7u,NpD4ec,OG6ZHd,RqxLvf,T6sTsf,T7XTS,TxZWcc,URQPYc,WgDvvc,aCZVp,aa,aam1T,abd,async,bgd,dv7Bfe,dvl,eN4qad,foot,iD8Yk,kVbfxd,kyn,lu,m,m6a0l,mUpTid,mpck,mu,o02Jie,pB6Zqd,qik19b,rHjpXd,sb_wiz,sf,tl,uiNkee,vs,xz7cCd,yyqeUd,zbML3c?xjs=s1, line 442: Script terminated by timeout at:
+s_xff@https://www.google.com/xjs/_/js/k=xjs.s.it.kKHd7iTxwsw.O/ck=xjs.s.B98JoGvKF3A.L.F4.O/am=AkAAAADAEsCsGwDOfxAA4IISBwAAgAAtQbCxQAqRkBCAAAAwCwsAAAQ/d=1/exm=Fkg7bd,HcFEGb,IvlUe,MC8mtf,OF7gzc,RMhBfe,T4BAC,TJw5qb,Y33vzc,ZyRBae,cdos,cr,csi,d,hsm,iDPoPb,jsa,mvYTse,tg8oTe,uz938c,vWNDde,ws9Tlc,yQ43ff/ed=1/dg=2/ct=zgms/rs=ACT90oHwnIhbEqf-CzraZDfyY9nHqw8Axw/m=G3eKy,MB3mMb,MkHyGd,NBZ7u,NpD4ec,OG6ZHd,RqxLvf,T6sTsf,T7XTS,TxZWcc,URQPYc,WgDvvc,aCZVp,aa,aam1T,abd,async,bgd,dv7Bfe,dvl,eN4qad,foot,iD8Yk,kVbfxd,kyn,lu,m,m6a0l,mUpTid,mpck,mu,o02Jie,pB6Zqd,qik19b,rHjpXd,sb_wiz,sf,tl,uiNkee,vs,xz7cCd,yyqeUd,zbML3c?xjs=s1:442:491
+s_6ff@https://www.google.com/xjs/_/js/k=xjs.s.it.kKHd7iTxwsw.O/ck=xjs.s.B98JoGvKF3A.L.F4.O/am=AkAAAADAEsCsGwDOfxAA4IISBwAAgAAtQbCxQAqRkBCAAAAwCwsAAAQ/d=1/exm=Fkg7bd,HcFEGb,IvlUe,MC8mtf,OF7gzc,RMhBfe,T4BAC,TJw5qb,Y33vzc,ZyRBae,cdos,cr,csi,d,hsm,iDPoPb,jsa,mvYTse,tg8oTe,uz938c,vWNDde,ws9Tlc,yQ43ff/ed=1/dg=2/ct=zgms/rs=ACT90oHwnIhbEqf-CzraZDfyY9nHqw8Axw/m=G3eKy,MB3mMb,MkHyGd,NBZ7u,NpD4ec,OG6ZHd,RqxLvf,T6sTsf,T7XTS,TxZWcc,URQPYc,WgDvvc,aCZVp,aa,aam1T,abd,async,bgd,dv7Bfe,dvl,eN4qad,foot,iD8Yk,kVbfxd,kyn,lu,m,m6a0l,mUpTid,mpck,mu,o02Jie,pB6Zqd,qik19b,rHjpXd,sb_wiz,sf,tl,uiNkee,vs,xz7cCd,yyqeUd,zbML3c?xjs=s1:477:227
+s_4ff.prototype.Ua@https://www.google.com/xjs/_/js/k=xjs.s.it.kKHd7iTxwsw.O/ck=xjs.s.B98JoGvKF3A.L.F4.O/am=AkAAAADAEsCsGwDOfxAA4IISBwAAgAAtQbCxQAqRkBCAAAAwCwsAAAQ/d=1/exm=Fkg7bd,HcFEGb,IvlUe,MC8mtf,OF7gzc,RMhBfe,T4BAC,TJw5qb,Y33vzc,ZyRBae,cdos,cr,csi,d,hsm,iDPoPb,jsa,mvYTse,tg8oTe,uz938c,vWNDde,ws9Tlc,yQ43ff/ed=1/dg=2/ct=zgms/rs=ACT90oHwnIhbEqf-CzraZDfyY9nHqw8Axw/m=G3eKy,MB3mMb,MkHyGd,NBZ7u,NpD4ec,OG6ZHd,RqxLvf,T6sTsf,T7XTS,TxZWcc,URQPYc,WgDvvc,aCZVp,aa,aam1T,abd,async,bgd,dv7Bfe,dvl,eN4qad,foot,iD8Yk,kVbfxd,kyn,lu,m,m6a0l,mUpTid,mpck,mu,o02Jie,pB6Zqd,qik19b,rHjpXd,sb_wiz,sf,tl,uiNkee,vs,xz7cCd,yyqeUd,zbML3c?xjs=s1:478:305
+s_.m6@https://www.google.com/xjs/_/js/k=xjs.s.it.kKHd7iTxwsw.O/ck=xjs.s.B98JoGvKF3A.L.F4.O/m=Fkg7bd,HcFEGb,IvlUe,MC8mtf,OF7gzc,RMhBfe,T4BAC,TJw5qb,Y33vzc,ZyRBae,cdos,cr,hsm,iDPoPb,jsa,mvYTse,tg8oTe,uz938c,vWNDde,ws9Tlc,yQ43ff,d,csi/am=AkAAAADAEsCsGwDOfxAA4IISBwAAgAAtQbCxQAqRkBCAAAAwCwsAAAQ/d=1/dg=2/ct=zgms/rs=ACT90oHwnIhbEqf-CzraZDfyY9nHqw8Axw:415:209
+s_.dispatchEvent@https://www.google.com/xjs/_/js/k=xjs.s.it.kKHd7iTxwsw.O/ck=xjs.s.B98JoGvKF3A.L.F4.O/m=Fkg7bd,HcFEGb,IvlUe,MC8mtf,OF7gzc,RMhBfe,T4BAC,TJw5qb,Y33vzc,ZyRBae,cdos,cr,hsm,iDPoPb,jsa,mvYTse,tg8oTe,uz938c,vWNDde,ws9Tlc,yQ43ff,d,csi/am=AkAAAADAEsCsGwDOfxAA4IISBwAAgAAtQbCxQAqRkBCAAAAwCwsAAAQ/d=1/dg=2/ct=zgms/rs=ACT90oHwnIhbEqf-CzraZDfyY9nHqw8Axw:413:384
+s_ES.prototype.Ba@https://www.google.com/xjs/_/js/k=xjs.s.it.kKHd7iTxwsw.O/ck=xjs.s.B98JoGvKF3A.L.F4.O/am=AkAAAADAEsCsGwDOfxAA4IISBwAAgAAtQbCxQAqRkBCAAAAwCwsAAAQ/d=1/exm=Fkg7bd,HcFEGb,IvlUe,MC8mtf,OF7gzc,RMhBfe,T4BAC,TJw5qb,Y33vzc,ZyRBae,cdos,cr,csi,d,hsm,iDPoPb,jsa,mvYTse,tg8oTe,uz938c,vWNDde,ws9Tlc,yQ43ff/ed=1/dg=2/ct=zgms/rs=ACT90oHwnIhbEqf-CzraZDfyY9nHqw8Axw/m=G3eKy,MB3mMb,MkHyGd,NBZ7u,NpD4ec,OG6ZHd,RqxLvf,T6sTsf,T7XTS,TxZWcc,URQPYc,WgDvvc,aCZVp,aa,aam1T,abd,async,bgd,dv7Bfe,dvl,eN4qad,foot,iD8Yk,kVbfxd,kyn,lu,m,m6a0l,mUpTid,mpck,mu,o02Jie,pB6Zqd,qik19b,rHjpXd,sb_wiz,sf,tl,uiNkee,vs,xz7cCd,yyqeUd,zbML3c?xjs=s1:449:221
+s__ha@https://www.google.com/xjs/_/js/k=xjs.s.it.kKHd7iTxwsw.O/ck=xjs.s.B98JoGvKF3A.L.F4.O/m=Fkg7bd,HcFEGb,IvlUe,MC8mtf,OF7gzc,RMhBfe,T4BAC,TJw5qb,Y33vzc,ZyRBae,cdos,cr,hsm,iDPoPb,jsa,mvYTse,tg8oTe,uz938c,vWNDde,ws9Tlc,yQ43ff,d,csi/am=AkAAAADAEsCsGwDOfxAA4IISBwAAgAAtQbCxQAqRkBCAAAAwCwsAAAQ/d=1/dg=2/ct=zgms/rs=ACT90oHwnIhbEqf-CzraZDfyY9nHqw8Axw:269:243
+s_Yha@https://www.google.com/xjs/_/js/k=xjs.s.it.kKHd7iTxwsw.O/ck=xjs.s.B98JoGvKF3A.L.F4.O/m=Fkg7bd,HcFEGb,IvlUe,MC8mtf,OF7gzc,RMhBfe,T4BAC,TJw5qb,Y33vzc,ZyRBae,cdos,cr,hsm,iDPoPb,jsa,mvYTse,tg8oTe,uz938c,vWNDde,ws9Tlc,yQ43ff,d,csi/am=AkAAAADAEsCsGwDOfxAA4IISBwAAgAAtQbCxQAqRkBCAAAAwCwsAAAQ/d=1/dg=2/ct=zgms/rs=ACT90oHwnIhbEqf-CzraZDfyY9nHqw8Axw:270:249
+s_Wha/b<@https://www.google.com/xjs/_/js/k=xjs.s.it.kKHd7iTxwsw.O/ck=xjs.s.B98JoGvKF3A.L.F4.O/m=Fkg7bd,HcFEGb,IvlUe,MC8mtf,OF7gzc,RMhBfe,T4BAC,TJw5qb,Y33vzc,ZyRBae,cdos,cr,hsm,iDPoPb,jsa,mvYTse,tg8oTe,uz938c,vWNDde,ws9Tlc,yQ43ff,d,csi/am=AkAAAADAEsCsGwDOfxAA4IISBwAAgAAtQbCxQAqRkBCAAAAwCwsAAAQ/d=1/dg=2/ct=zgms/rs=ACT90oHwnIhbEqf-CzraZDfyY9nHqw8Axw:266:277
+
+1592385348110	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/yl/3bwgxtvd3d55k4h9wn4c996w0000gn/T/rust_mozprofileNtMbVY"
+1592385350896	Marionette	INFO	Listening on port 62760
+1592385350920	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592385479435	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/yl/3bwgxtvd3d55k4h9wn4c996w0000gn/T/rust_mozprofileP4LUU0"
+1592385481989	Marionette	INFO	Listening on port 63460
+1592385482039	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592385677492	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/yl/3bwgxtvd3d55k4h9wn4c996w0000gn/T/rust_mozprofileZVwp98"
+1592385680011	Marionette	INFO	Listening on port 64372
+1592385680091	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://eus.rubiconproject.com/usync.html?p=synacor_xapi&endpoint=us-east, line 12: SecurityError: The operation is insecure.
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x5A0011,name=PHttpChannel::Msg___delete__) Channel closing: too late to send/recv, messages will be lost
+
+1592385763261	Marionette	INFO	Stopped listening on port 50055
+1592385764627	Marionette	INFO	Stopped listening on port 50891
+1592385765989	Marionette	INFO	Stopped listening on port 51836
+1592385767314	Marionette	INFO	Stopped listening on port 62760
+1592385768766	Marionette	INFO	Stopped listening on port 63460
+1592385770393	Marionette	INFO	Stopped listening on port 64372
+1592385800946	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/yl/3bwgxtvd3d55k4h9wn4c996w0000gn/T/rust_mozprofilevxrW4G"
+1592385803205	Marionette	INFO	Listening on port 64987
+1592385803217	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592385834702	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/yl/3bwgxtvd3d55k4h9wn4c996w0000gn/T/rust_mozprofile3kbm3T"
+1592385836883	Marionette	INFO	Listening on port 65211
+1592385836964	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592385873754	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/yl/3bwgxtvd3d55k4h9wn4c996w0000gn/T/rust_mozprofileW0mWPW"
+1592385875909	Marionette	INFO	Listening on port 65463
+1592385875923	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: resource:///modules/FaviconLoader.jsm, line 568: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript error: resource:///modules/FaviconLoader.jsm, line 568: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+1592388637909	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/yl/3bwgxtvd3d55k4h9wn4c996w0000gn/T/rust_mozprofile6vj6fP"
+1592388640472	Marionette	INFO	Listening on port 61026
+1592388640489	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: resource:///modules/FaviconLoader.jsm, line 568: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+1592390351725	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/yl/3bwgxtvd3d55k4h9wn4c996w0000gn/T/rust_mozprofile4s3o8P"
+1592390354249	Marionette	INFO	Listening on port 52234
+1592390354301	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: resource:///modules/FaviconLoader.jsm, line 568: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript error: resource:///modules/FaviconLoader.jsm, line 568: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript error: resource:///modules/FaviconLoader.jsm, line 568: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+1592390909732	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/yl/3bwgxtvd3d55k4h9wn4c996w0000gn/T/rust_mozprofileYAkBaT"
+1592390912081	Marionette	INFO	Listening on port 54884
+1592390912098	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: resource://gre/actors/ThumbnailsChild.jsm, line 29: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript error: resource://gre/actors/ThumbnailsChild.jsm, line 29: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript error: resource://gre/actors/ThumbnailsChild.jsm, line 29: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript error: resource://gre/actors/ThumbnailsChild.jsm, line 29: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript error: resource:///modules/FaviconLoader.jsm, line 568: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript error: resource://gre/actors/ThumbnailsChild.jsm, line 29: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript error: resource://gre/actors/ThumbnailsChild.jsm, line 29: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript error: resource://gre/actors/ThumbnailsChild.jsm, line 29: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript error: resource:///modules/FaviconLoader.jsm, line 568: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript error: resource://gre/actors/ThumbnailsChild.jsm, line 29: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript error: resource://gre/actors/ThumbnailsChild.jsm, line 29: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript error: resource:///modules/FaviconLoader.jsm, line 568: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript error: resource://gre/actors/ThumbnailsChild.jsm, line 29: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript error: resource://gre/actors/ThumbnailsChild.jsm, line 29: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript error: resource:///modules/FaviconLoader.jsm, line 568: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript error: resource://gre/actors/ThumbnailsChild.jsm, line 29: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript error: resource://gre/actors/ThumbnailsChild.jsm, line 29: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript error: resource://gre/actors/ThumbnailsChild.jsm, line 29: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript error: resource://gre/actors/ThumbnailsChild.jsm, line 29: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript error: resource://gre/actors/ThumbnailsChild.jsm, line 29: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript error: resource://gre/actors/ThumbnailsChild.jsm, line 29: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript error: resource://gre/actors/ThumbnailsChild.jsm, line 29: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript error: resource://gre/actors/ThumbnailsChild.jsm, line 29: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+1592395908328	Marionette	INFO	Stopped listening on port 64987
+1592395909778	Marionette	INFO	Stopped listening on port 65211
+1592395911058	Marionette	INFO	Stopped listening on port 65463
+1592395912380	Marionette	INFO	Stopped listening on port 61026
+1592395913655	Marionette	INFO	Stopped listening on port 52234
+1592395915242	Marionette	INFO	Stopped listening on port 54884
+1592395972463	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/yl/3bwgxtvd3d55k4h9wn4c996w0000gn/T/rust_mozprofileBEsU83"
+1592395974897	Marionette	INFO	Listening on port 59709
+1592395974924	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: resource:///modules/FaviconLoader.jsm, line 568: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript error: resource:///modules/FaviconLoader.jsm, line 568: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript error: resource:///modules/FaviconLoader.jsm, line 568: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript error: resource:///modules/FaviconLoader.jsm, line 568: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript error: resource:///modules/FaviconLoader.jsm, line 568: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript error: resource:///modules/FaviconLoader.jsm, line 568: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript error: resource:///modules/FaviconLoader.jsm, line 568: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
