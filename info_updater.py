@@ -65,4 +65,4 @@ if __name__ == '__main__':
         json.dump(data, info_file)
     with open("locale/it-it/diseases.entity", "w+") as entity_file:
         for name in data:
-            entity_file.write(name)
+            entity_file.write(name+"\n")
