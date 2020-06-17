@@ -38,7 +38,7 @@ class HospitalTriage(MycroftSkill):
         # Load the classifier classes from JSON
         with open(BASEPATH+'classes.json') as classes:
             self.classes = json.load(classes)
-        with file_system.open('informations.json') as informations:
+        with open(BASEPATH+'informations.json') as informations:
             self.informations = json.load(informations)
 
     def symptom_handler(handler):
