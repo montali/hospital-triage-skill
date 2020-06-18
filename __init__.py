@@ -124,7 +124,7 @@ class HospitalTriage(MycroftSkill):
         # Tell the user the best match, and if it was wrong, say sorry
         did_i_get_that = self.ask_yesno(
             "info.check_results", {"disease": key})
-        if not did_i_get_that:
+        if did_i_get_that == "no":
             self.speak_dialog('sorry')
             return
         # Let's create an array containing the choices of infos
@@ -527,10 +527,9 @@ def extract_temperature(utterance):
 
 def dictionary_searcher(query, dictionary):
     # Let's find the most similar disease to what we've got
-    query = message.data.get('disease')
-    min_distance = textdistance.hamming(query, "")
+    min_distance = textdistance.levenshtein(query, list(dictionary.keys())[0])
     for dict_key in dictionary:
-        distance = textdistance.hamming(query, dict_key)
+        distance = textdistance.levenshtein(query, dict_key)
         if distance < min_distance:
             min_distance = distance
             nearest_key = dict_key
