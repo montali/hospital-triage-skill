@@ -129,7 +129,7 @@ class HospitalTriage(MycroftSkill):
                 nearest = self.informations[disease]
         # Tell the user the best match, and if it was wrong, say sorry
         did_i_get_that = self.ask_yesno(
-            "infos.check_results", {"disease": nearest_key})
+            "info.check_results", {"disease": nearest_key})
         if not did_i_get_that:
             self.speak_dialog('sorry')
             return
@@ -138,11 +138,12 @@ class HospitalTriage(MycroftSkill):
         choices = ""
         for choice in self.possibilities:
             choices = choices + choice + ", "
-        self.speak_dialog("infos.possibilities", )
-        response = self.get_response(dialog='infos.possibilities', data={
+        self.speak_dialog("info.possibilities", )
+        response = self.get_response(dialog='info.possibilities', data={
             "possibilities": choices})
         try:
-            self.speak_dialog('infos', {"infos": self.informations[response]})
+            self.speak_dialog(
+                'info.speak', {"infos": self.informations[response]})
         except KeyError:
             self.speak_dialog('sorry')
     # ------------------------------------
