@@ -8,6 +8,7 @@ medical interventions.
 from mycroft import MycroftSkill, intent_file_handler
 from mycroft.filesystem import FileSystemAccess
 import json
+import textdistance
 import os
 from fastai.text import *
 
@@ -17,6 +18,7 @@ from fastai.text import *
  2. Translate strings to english
 """
 BASEPATH = '/opt/mycroft/skills/hospital-triage-skill.montali/'
+
 
 class HospitalTriage(MycroftSkill):
     """Main skill class for the triage.
@@ -116,8 +118,23 @@ class HospitalTriage(MycroftSkill):
 
         GUI: "Is it you?" --> "Main symptom?"
         """
+        # Let's find the most similar disease to what we've got
+        selected_disease = message.data.get('disease')
+        min_distance = textdistance.hamming(selected_disease, "")
+        for disease in self.informations:
+            distance = textdistance.hamming(selected_disease, disease)
+            if distance < min_distance:
+                min_distance = distance
+                nearest_key = disease
+                nearest = self.informations[disease]
+        # Tell the user the best match, and if it was wrong, say sorry
+        did_i_get_that = self.ask_yesno(
+            "infos.check_results", {"disease": nearest_key})
+        if not did_i_get_that:
+            self.speak_dialog('sorry')
+            return
         # Let's create an array containing the choices of infos
-        self.possibilities = self.informations[message.data.get('disease')]
+        self.possibilities = nearest
         choices = ""
         for choice in self.possibilities:
             choices = choices + choice + ", "
