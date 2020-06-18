@@ -63,6 +63,6 @@ if __name__ == '__main__':
     data = df.get_all()
     with open("informations.json", "w") as info_file:
         json.dump(data, info_file)
-    with open("locale/it-it/diseases.entity", "w+") as entity_file:
+    with open("locale/it-it/disease.entity", "w+") as entity_file:
         for name in data:
             entity_file.write(name+"\n")
