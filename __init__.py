@@ -119,33 +119,24 @@ class HospitalTriage(MycroftSkill):
         GUI: "Is it you?" --> "Main symptom?"
         """
         # Let's find the most similar disease to what we've got
-        selected_disease = message.data.get('disease')
-        min_distance = textdistance.hamming(selected_disease, "")
-        for disease in self.informations:
-            distance = textdistance.hamming(selected_disease, disease)
-            if distance < min_distance:
-                min_distance = distance
-                nearest_key = disease
-                nearest = self.informations[disease]
+        key, result = dictionary_searcher(
+            message.data.get('disease'), self.informations)
         # Tell the user the best match, and if it was wrong, say sorry
         did_i_get_that = self.ask_yesno(
-            "info.check_results", {"disease": nearest_key})
+            "info.check_results", {"disease": key})
         if not did_i_get_that:
             self.speak_dialog('sorry')
             return
         # Let's create an array containing the choices of infos
-        self.possibilities = nearest
+        self.possibilities = result
         choices = ""
         for choice in self.possibilities:
             choices = choices + choice + ", "
-        self.speak_dialog("info.possibilities", )
         response = self.get_response(dialog='info.possibilities', data={
             "possibilities": choices})
-        try:
-            self.speak_dialog(
-                'info.speak', {"infos": self.informations[response]})
-        except KeyError:
-            self.speak_dialog('sorry')
+        info_key, info = dictionary_searcher(response, result)
+        self.speak_dialog(
+            'info.speak', {"infos": info})
     # ------------------------------------
     # MAIN SYMPTOMS HANDLERS
     #   Ordered by priority.
@@ -532,6 +523,19 @@ def extract_temperature(utterance):
         return None
     except TypeError:
         return None
+
+
+def dictionary_searcher(query, dictionary):
+    # Let's find the most similar disease to what we've got
+    query = message.data.get('disease')
+    min_distance = textdistance.hamming(query, "")
+    for dict_key in dictionary:
+        distance = textdistance.hamming(query, dict_key)
+        if distance < min_distance:
+            min_distance = distance
+            nearest_key = dict_key
+            nearest = dictionary[dict_key]
+    return nearest_key, nearest
 
 
 def create_skill():
