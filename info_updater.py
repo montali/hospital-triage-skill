@@ -50,8 +50,12 @@ class DataFetcher():
                 tab_content = self.driver.find_element_by_id("tab-"+str(i))
                 for paragraph in tab_content.find_elements_by_tag_name("p"):
                     text = text + str(paragraph.text)
-                informations[link.get_attribute(
-                    "title")] = text
+                # Sometimes paragraphs end with a list. So, if the string ends with :, we cut off the last sentence.
+                if len(text) > 0:
+                    if text[-1] == ':':
+                        text = text.rsplit('.', 1)[0]
+                    informations[link.get_attribute(
+                        "title")] = text
                 i = i + 1
             return informations
         except NoSuchElementException:
