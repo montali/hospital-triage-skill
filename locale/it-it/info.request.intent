@@ -1,3 +1,7 @@
-Dammi informazioni su(|lla) {disease}
-Cosa sai de(l|lla) {disease}
-Dimmi qualcosa su(l|lla) {disease}
+Dammi informazioni (sul|sulla|del|della|dei|sui) {disease}
+Cosa sai (sul|sulla|del|della|dei|sui) {disease}
+Cosa sai dirmi (sul|sulla|sui|del|della|dei) {disease}
+Parlami (di|del|della|dei) {disease}
+Dimmi qualcosa (sul|sulla|del|della|dei|sui) {disease}
+Ho bisogno di informazioni (sul|sulla|del|della|dei|sui) {disease}
+Informami al riguardo (sul|sulla|del|della|dei|sui) {disease}
