@@ -10,7 +10,7 @@ def_file_dest = "en-us"
 def_gtrans = "en"
 
 
-def translate_file(file, source_file_locale=def_file_src, dest_file_locale=def_file_dest, dest_gtrans=def_gtrans):
+def translate_file(file, source_file_locale, dest_file_locale, dest_gtrans):
     with open(file, "r") as source_file:
         new_file_path = file.replace(source_file_locale, dest_file_locale)
         with open(new_file_path, "w+") as dest_file:
@@ -21,11 +21,12 @@ def translate_file(file, source_file_locale=def_file_src, dest_file_locale=def_f
     print("Translated "+file+" ✨")
 
 
-def dir_explorer(path):
+def dir_explorer(path, source_file_locale=def_file_src, dest_file_locale=def_file_dest, dest_gtrans=def_gtrans):
     for file in os.listdir(path):
         full_path = join(path, file)
         if isfile(full_path):
-            translate_file(full_path)
+            translate_file(full_path, source_file_locale,
+                           dest_file_locale, dest_gtrans)
         else:
             dir_explorer(full_path)
 
@@ -34,10 +35,7 @@ if __name__ == '__main__':
     try:
         if not os.path.exists(sys.argv[1]):
             raise FileNotFoundError
-        def_file_src = sys.argv[2]
-        def_file_dest = sys.argv[3]
-        def_gtrans = sys.argv[4]
     except IndexError:
         print(
             "Please insert the dir and the language codes.\nUSAGE: python3 string_translate [dir] [src-locale-code] [dest-locale-code] [gtrans-dest-code]")
-    dir_explorer(sys.argv[1])
+    dir_explorer(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])
