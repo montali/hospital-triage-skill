@@ -495,3 +495,4 @@ JavaScript error: resource:///modules/FaviconLoader.jsm, line 568: InvalidStateE
 JavaScript error: resource:///modules/FaviconLoader.jsm, line 568: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
 JavaScript error: resource:///modules/FaviconLoader.jsm, line 568: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
 JavaScript error: resource:///modules/FaviconLoader.jsm, line 568: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+1592484387998	Marionette	INFO	Stopped listening on port 59329
